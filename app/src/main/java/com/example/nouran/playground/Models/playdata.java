@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Nouran on 3/25/2018.
  */
 
-public class Model implements Serializable {
+public class playdata implements Serializable {
 
     String playground_id_pk;
     String playground_name;
@@ -173,7 +173,7 @@ public class Model implements Serializable {
 
 
 
-    public Model(String playground_id_pk, String playground_name, String playground_cost, String playground_capacity, String playground_phone, String playground_city_id_fk, String playground_governorate_id_fk, String playground_address, String playground_evaluate, double playground_google_lng, double playground_google_lat, String playground_info, String playground_descrip, String user_id_fk, String approved, String date_s, String image_name, String playground_offer) {
+    public playdata(String playground_id_pk, String playground_name, String playground_cost, String playground_capacity, String playground_phone, String playground_city_id_fk, String playground_governorate_id_fk, String playground_address, String playground_evaluate, double playground_google_lng, double playground_google_lat, String playground_info, String playground_descrip, String user_id_fk, String approved, String date_s, String image_name, String playground_offer) {
         this.playground_id_pk = playground_id_pk;
         this.playground_name = playground_name;
         this.playground_cost = playground_cost;

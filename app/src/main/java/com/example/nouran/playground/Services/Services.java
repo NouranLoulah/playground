@@ -1,6 +1,7 @@
 package com.example.nouran.playground.Services;
 
-import com.example.nouran.playground.Models.Model;
+import com.example.nouran.playground.Models.MSG;
+import com.example.nouran.playground.Models.playdata;
 import com.example.nouran.playground.Models.galler;
 import com.example.nouran.playground.Models.login;
 
@@ -19,7 +20,7 @@ import retrofit2.http.Path;
 
 public interface Services {
     @GET("Allstadium")
-    Call<List<Model>> playground();
+    Call<List<playdata>> playground();
 
 
     @GET("StadiumImages/{id}")
@@ -38,4 +39,12 @@ public interface Services {
     @POST("Login")
     Call<login> userLogIn(@Field("user_name") String user_name,
                           @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("AddOrederAdmin")
+    Call<MSG> BookGroundAdmin(@Field("time_reservation") String time_reservation,
+                              @Field("user_id") String UserID,
+                              @Field("date_reservation") String Date,
+                              @Field("playground_id") String GroundID
+    );
 }

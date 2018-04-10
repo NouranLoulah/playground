@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1013048569353",
+    "firebase_url": "https://playground-37ad6.firebaseio.com",
+    "project_id": "playground-37ad6",
+    "storage_bucket": "playground-37ad6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013048569353:android:f3e664626d4dcc4c",
+        "android_client_info": {
+          "package_name": "com.example.nouran.playground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013048569353-gtq7ihc2p2k5jmpr4pe5eauh8eta4rh1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nouran.playground",
+            "certificate_hash": "0a7f039c43755ed257607daebd54da69d6734d77"
+          }
+        },
+        {
+          "client_id": "1013048569353-gf3gnkbkqrbhi3um33lg7nff0nim324k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmsiSeGF-IBoCoEZdtHOUPLqXIlv4FB0I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013048569353-gf3gnkbkqrbhi3um33lg7nff0nim324k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

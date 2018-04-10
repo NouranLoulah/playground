@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nouran.playground.Activities.DetailsActivity;
-import com.example.nouran.playground.Models.Model;
+import com.example.nouran.playground.Activities.LoginActivity;
+import com.example.nouran.playground.Models.login;
+import com.example.nouran.playground.Models.playdata;
 import com.example.nouran.playground.R;
 
 import java.util.ArrayList;
@@ -22,10 +25,10 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    ArrayList<Model> contents;
+    ArrayList<playdata> contents;
     Context context;
 
-    public RecyclerViewAdapter(ArrayList<Model> contents ,Context context ) {
+    public RecyclerViewAdapter(ArrayList<playdata> contents , Context context ) {
         this.contents = contents;
         this.context = context;
     }
@@ -42,11 +45,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final Model playground = contents.get(position);
+        final playdata playground = contents.get(position);
 //        final double lat= playground.getPlayground_google_lat();
 //        final double lng =playground.getPlayground_google_lng();
         holder.text.setText(playground.getPlayground_name());
-
         Glide.with(context.getApplicationContext())
                 .load(contents.get(position).getImage_name())
                 .into(holder.image);
@@ -56,7 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View view) {
 
                 Intent i=new Intent(context,DetailsActivity.class);
-          i.putExtra("data",playground);
+                i.putExtra("data",playground);
+
 //                i.putExtra("latitude",lat);
 //                i.putExtra("longitude",lng);
                 context.startActivity(i);

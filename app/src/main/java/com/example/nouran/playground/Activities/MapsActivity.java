@@ -1,8 +1,14 @@
 package com.example.nouran.playground.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.nouran.playground.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,7 +18,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLocationButtonClickListener,
+        GoogleMap.OnMyLocationClickListener,
+        OnMapReadyCallback {
 
     Double latitude, longitude;
 
@@ -29,9 +37,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         //get data from detail
-        Intent i=getIntent();
-        latitude= i.getDoubleExtra("latitude",0);
-        longitude=i.getDoubleExtra("longitude",0);
+        Intent i = getIntent();
+        latitude = i.getDoubleExtra("latitude", 0);
+        longitude = i.getDoubleExtra("longitude", 0);
 
     }
 
@@ -48,11 +56,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMyLocationClickListener(this);
 
         // Add a marker in Sydney and move the camera
         LatLng playground = new LatLng(latitude, longitude);
 
-        mMap.addMarker(new MarkerOptions().position(playground).title("Marker in play"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(playground.latitude,playground.longitude),10));
+        mMap.addMarker(new MarkerOptions().position(playground).title("Marker in playground"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(playground.latitude,playground.longitude),5));
     }
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(this, "Current location ", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        // Return false so that we don't consume the event and the default behavior still occurs
+        // (the camera animates to the user's current position).
+        return false;
+    }
+
 }
