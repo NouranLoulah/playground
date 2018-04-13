@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="7dp">
+    android:padding="7dp"
+    android:orientation="vertical"
+    >
 
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:elevation="3dp"
         android:padding="7dp"
         app:cardCornerRadius="5dp">
@@ -32,19 +34,20 @@
 
                 />
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:textColor="#078948"
-                android:textSize="20dp"
-                android:layout_margin="15dp"
 
-                />
 
         </LinearLayout>
 
 
     </android.support.v7.widget.CardView>
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:layout_margin="15dp"
+
+        />
 </LinearLayout>

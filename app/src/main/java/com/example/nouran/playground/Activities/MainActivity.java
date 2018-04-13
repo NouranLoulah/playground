@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(MainActivity.this,DetailsActivity.class);
         intent.putExtra("id",id);
 
-        Log.e("token",""+FirebaseInstanceId.getInstance().getToken());
 
 //        Toast.makeText(MainActivity.this, id + "", Toast.LENGTH_SHORT).show();
 
