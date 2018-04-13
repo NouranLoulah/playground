@@ -7,20 +7,17 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.nouran.playground.DirectionsParser;
 import com.example.nouran.playground.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -29,13 +26,11 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,10 +40,10 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
         GoogleMap.OnMyLocationClickListener,
         OnMapReadyCallback {
 
-    Double latitude, longitude;
     static final int Location_Request = 500;
-    private GoogleMap mMap;
+    Double latitude, longitude;
     ArrayList<LatLng> Listpoints;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +82,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
             return;
         }
         mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationButtonClickListener(this);
-        mMap.setOnMyLocationClickListener(this);
+
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
@@ -188,6 +182,20 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
 
         }
     }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(this, "Current location ", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+        // Return false so that we don't consume the event and the default behavior still occurs
+        // (the camera animates to the user's current position).
+        return false;
+    }
+
     public class Taskrequestdirection extends AsyncTask<String, Void, String >{
 
         @Override
@@ -213,7 +221,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
 
         }
     }
-
 
     public class TaskParser extends AsyncTask<String, Void, List<List<HashMap<String, String>>> > {
 
@@ -263,21 +270,6 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMyLoca
             }
 
         }
-    }
-
-
-
-    @Override
-    public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "Current location ", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-        // Return false so that we don't consume the event and the default behavior still occurs
-        // (the camera animates to the user's current position).
-        return false;
     }
 
 }
