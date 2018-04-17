@@ -1,22 +1,19 @@
 package com.example.nouran.playground.Activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.example.nouran.playground.Models.login;
 import com.example.nouran.playground.R;
 import com.example.nouran.playground.Services.Services;
-import com.example.nouran.playground.Models.login;
 import com.example.nouran.playground.Services.playgroundAPI;
 import com.example.nouran.playground.SharedPref;
 
@@ -25,11 +22,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+    static String id;
+    public boolean isFirstStart;
     EditText txtname, txtpassword;
     TextView register;
     Button login;
-    static String id;
-    public boolean isFirstStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +61,15 @@ public class LoginActivity extends AppCompatActivity {
 //
         SharedPreferences sharedPreferences = getSharedPreferences("id", MODE_PRIVATE);
         String uid = sharedPreferences.getString("user_id", id);
-//       if (!uid.isEmpty()) {
+//       if (uid.isEmpty()) {
             SharedPref sharedPref = new SharedPref(this);
             sharedPref.createsharedpref("user_id");
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra("id", uid);
-
-
             startActivity(intent);
             finish();
-        }
-   // }
+//       }
+    }
 
     public void initiaview() {
 
@@ -143,10 +138,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
 
-//                    Toast.makeText(LoginActivity.this, "mmm", Toast.LENGTH_SHORT).show();
                     if (response.body().getSuccess() == 1) {
                         id = response.body().getId();
-                        Toast.makeText(LoginActivity.this, ""+id, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LoginActivity.this, ""+id, Toast.LENGTH_SHORT).show();
                         SharedPref sharedPref = new SharedPref(LoginActivity.this);
                         sharedPref.createsharedpref(id);
                         Intent i = new Intent(LoginActivity.this, MainActivity.class);

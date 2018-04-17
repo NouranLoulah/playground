@@ -1,8 +1,60 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.nouran.playground.Activities.MapsActivity" />
+    android:layout_height="match_parent">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.nouran.playground.Activities.MapsActivity" />
+
+    <RelativeLayout
+        android:id="@+id/Layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/back">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_search_black_24dp"
+
+            />
+
+        <AutoCompleteTextView
+
+            android:id="@+id/input_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img"
+            android:background="@null"
+            android:hint="Enter Address"
+            android:imeOptions="actionSearch"
+            android:padding="@dimen/_10sdp"
+
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/place_info"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/Layout"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_info" />
+
+    <ImageView
+        android:id="@+id/place_picker"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/place_info"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_action_name" />
+</RelativeLayout>

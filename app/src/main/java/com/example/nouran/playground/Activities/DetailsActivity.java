@@ -1,27 +1,15 @@
 package com.example.nouran.playground.Activities;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.opengl.ETC1;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.text.style.UpdateLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,29 +18,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nouran.playground.Models.MSG;
-import com.example.nouran.playground.Models.login;
 import com.example.nouran.playground.Models.playdata;
 import com.example.nouran.playground.R;
 import com.example.nouran.playground.Services.Services;
 import com.example.nouran.playground.Services.playgroundAPI;
 import com.example.nouran.playground.SharedPref;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -62,15 +38,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailsActivity extends AppCompatActivity {
+    final Calendar mycalendar = Calendar.getInstance();
     EditText ETdate;
     Spinner ETtime;
     ImageView image;
     TextView name, address, phone, capacity, cost, info;
     Button mapBT, reserve, btnlogout;
     String spinner, hours;
-
-    final Calendar mycalendar = Calendar.getInstance();
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -94,7 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(DetailsActivity.this, LoginActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
-                finish();
+//                finish();
 
 
             }

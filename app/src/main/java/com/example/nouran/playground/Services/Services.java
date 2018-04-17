@@ -1,9 +1,10 @@
 package com.example.nouran.playground.Services;
 
 import com.example.nouran.playground.Models.MSG;
-import com.example.nouran.playground.Models.playdata;
+import com.example.nouran.playground.Models.Places;
 import com.example.nouran.playground.Models.galler;
 import com.example.nouran.playground.Models.login;
+import com.example.nouran.playground.Models.playdata;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 /**
  * Created by Nouran on 3/26/2018.
@@ -47,4 +49,7 @@ public interface Services {
                               @Field("date_reservation") String Date,
                               @Field("playground_id") String GroundID
     );
+
+    @GET()
+    Call<Places> get_Direction(@Url String url);
 }
